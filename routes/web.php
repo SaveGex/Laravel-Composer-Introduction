@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::controller(CommentsController::class)->group(function () {
     Route::get('/comments/{id}', 'GetComment')->name('comments.show');
     // Route::post(('/comments'), 'CreateComment')->name('comments.store');
 });
+Route::post('/orders', [OrderController::class, 'process'])
+    ->name('orders.process');
+
