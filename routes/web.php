@@ -23,3 +23,12 @@ Route::get('/posts/{post}', [PostController::class, 'show'])
 Route::post('/orders', [OrderController::class, 'process'])
     ->name('orders.process');
 
+Route::get('/adults', function() {
+    return response()->json([
+        'success' => true,
+        'message' => 'Welcome!!!'
+    ]);
+})->middleware('age:18')
+->name('adults.index');
+
+
