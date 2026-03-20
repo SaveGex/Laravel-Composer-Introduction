@@ -32,7 +32,8 @@ class Post extends Model
         'title',
         'content',
         'author_id',
-        'is_published'
+        'is_published',
+        'slug'
     ];
 
     protected $casts = [

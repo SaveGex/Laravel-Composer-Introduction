@@ -1,0 +1,25 @@
+info:
+  name: posts.store
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost/posts
+  body:
+    type: json
+    data: |-
+      {
+        "title": "post_3",
+        "content": "content for post 3",
+        "author_id": 1,
+        "is_published": false,
+        "slug": "post3"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
