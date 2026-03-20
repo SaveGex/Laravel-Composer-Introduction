@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-
+use App\Models\Post;
 use App\Services\LoggerService;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bind('post', function($value) {
+           return Post::where('slug', $value)->first() 
+            ?? Post::findOrFail($value);
+        });
     }
 }

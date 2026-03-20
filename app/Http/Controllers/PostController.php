@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -18,6 +17,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return $post;
+        return response()->json([
+            'success' => true,
+            'data'=> $post
+        ]);
     }
 }

@@ -15,7 +15,7 @@ class StripeGateway implements PaymentGatewayInterface
 
     public function charge(float $amount, array $options = []): array
     {
-        $this->logger->info("Начало платежа: $amount");
+        $this->logger->info("Start processing payment: $amount");
 
         return [
             'success' => true,
@@ -27,7 +27,7 @@ class StripeGateway implements PaymentGatewayInterface
 
     public function refund(string $transactionId, ?float $amount = null): array
     {
-        $this->logger->info("Возврат: $transactionId");
+        $this->logger->info("Rollback transaction: $transactionId");
 
         return [
             'success' => false,
