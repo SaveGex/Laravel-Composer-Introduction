@@ -1,33 +1,21 @@
 <?php
 
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/posts', [PostController::class, 'index'])
     ->name('posts.index');
 
 Route::get('/posts/{post}', [PostController::class, 'show'])
+    ->whereNumber('post')
     ->name('posts.show');
 
-// Route::controller(CommentsController::class)->group(function () {
-//     Route::get('/comments', 'GetAllComments')->name('comments.index');
-//     Route::get('/comments/{id}', 'GetComment')->name('comments.show');
-//     // Route::post(('/comments'), 'CreateComment')->name('comments.store');
-// });
-Route::post('/orders', [OrderController::class, 'process'])
-    ->name('orders.process');
+Route::get('/posts/create', [PostController::class, 'create'])
+    ->name('posts.create');
 
-Route::get('/adults', function() {
-    return response()->json([
-        'success' => true,
-        'message' => 'Welcome!!!'
-    ]);
-})->middleware('age:18')
-->name('adults.index');
+Route::post('/posts', [PostController::class, 'store'])
+    ->name('posts.store');
 
-
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])
+    ->whereNumber('post')
+    ->name('posts.destroy');

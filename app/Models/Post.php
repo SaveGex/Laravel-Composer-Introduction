@@ -39,4 +39,10 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean'     // 0/1 -> false/true;
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
 }

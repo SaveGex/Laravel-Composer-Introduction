@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->append([
-            EnsureTokenIsValid::class,
+            // EnsureTokenIsValid::class,
             LogRequestMiddleware::class,
         ]);
 
