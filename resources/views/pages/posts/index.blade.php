@@ -33,6 +33,7 @@
                                             @else
                                                 <span class="badge bg-secondary">Draft</span>
                                             @endif
+                                            <span class="badge text-bg-info">{{ $post->created_at->format('Y.m.d') }} AT {{ $post->created_at->format('H:i') }}</span>
                                         </p>
 
                                         <p class="card-text flex-grow-1">
