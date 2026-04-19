@@ -4,12 +4,12 @@
 
 @section('content')
     <h1>Welcome to P32 Blog</h1>
-    <p class="lead">Добро пожаловать на наш блог!</p>
+    <p class="lead">...</p>
 
     <div class="row">
         <div class="col-md-6">
-            <h2>О проекте</h2>
-            <p>Блог для группы П32</p>
+            <h2>...</h2>
+            <p>P32</p>
         </div>
     </div>
 @endsection
