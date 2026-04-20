@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all()->load('author');
+        $posts = Post::query()
+            ->where(function ($query) {
+                $query->where('is_published', true)
+                    ->orWhere('author_id', Auth::id());
+            })
+            ->with('author')
+            ->get();
 
         return view('pages.posts.index', compact('posts'));
     }
@@ -27,19 +34,11 @@ class PostController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'is_published' => 'boolean',
+            'slug' => 'required|string',
         ]);
 
-        $validated['author_id'] = 1;
+        $validated['author_id'] = $request->user()->id;
         $validated['is_published'] = $request->boolean('is_published');
-
-        // генеруємо унікальний slug
-        $base = Str::slug($validated['title']);
-        $slug = $base;
-        $i = 1;
-        while (Post::where('slug', $slug)->exists()) {
-            $slug = $base . '-' . $i++;
-        }
-        $validated['slug'] = $slug;
 
         $post = Post::create($validated);
 

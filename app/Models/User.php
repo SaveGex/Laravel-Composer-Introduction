@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -46,6 +48,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'icon_url',
     ];
 
     /**
@@ -69,5 +72,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected function avatarUrl(): Attribute
+    {
+        return Attribute::get(fn () => $this->icon_url 
+            ? Storage::url($this->icon_url) 
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->name)
+        );
     }
 }

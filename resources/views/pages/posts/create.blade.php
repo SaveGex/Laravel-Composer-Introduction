@@ -11,41 +11,49 @@
             <div class="mb-3">
                 <x-field
                     id="title"
-                    label="Title"
                     classes="form-control"
                     placeholder="Enter post title"
-                    :required="true"/>
+                    :required="true"
+                    
+                    label:label="Title"
+                    label:class="form-label"/>
             </div>
 
             {{-- Slug --}}
             <div class="mb-3">
                 <x-field
                     id="slug"
-                    label="Slug"
                     classes="form-control"
                     placeholder="Enter post slug"
-                    :required="true"/>
+                    :required="true"
+                    
+                    label:label="Slug"
+                    label:class="form-label"/>
             </div>
 
             {{-- Content --}}
             <div class="mb-3">
                 <x-field
                     id="content"
-                    label="Content"
                     classes="form-control"
                     placeholder="Write your post content here..."
-                    :required="true"/>
+                    :required="true"
+                    
+                    label:label="Post Content"
+                    label:class="form-label"
+                    />
             </div>
 
             {{-- Is Published --}}
             <div class="form-check mb-3">
                 <x-field
                     id="is_published"
-                    label_attributes="form-check-label"
-                    label="Publish immediately"
                     classes="form-check-input"
                     type="checkbox"
                     value="1"
+                    
+                    label:label="Publish immediately"
+                    label:class="form-check-label"
                     />
             </div>
 

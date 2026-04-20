@@ -52,7 +52,7 @@
                                                     onsubmit="return confirm('Are you sure you want to delete this post?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">
+                                                    <button type="submit" class="btn btn-outline-danger" @cannot('delete', $post) disabled @endcan >
                                                         <i class="bi bi-trash"></i> Delete
                                                     </button>
                                                 </form>

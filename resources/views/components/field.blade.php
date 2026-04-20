@@ -3,15 +3,17 @@
 @php
     $labelAttributes = collect($attributes->getAttributes())
         ->filter(fn($value, $key) => str_starts_with($key, 'label:'))
-        ->mapWithKeys(fn($value, $key) => [str_replace('label:', '', $key) => $value])
-        ->merge(['for' => $id, 'class' => 'form-label']);
+        ->mapWithKeys(fn($value, $key) => [str_replace('label:', '', $key) => $value]);
+
+    $labelText = $labelAttributes->get('label');
+    $labelHtmlAttributes = $labelAttributes->forget('label')->merge(['for' => $id]);
 
     $inputAttributes = $attributes->whereDoesntStartWith('label:');
 @endphp
 
-@if($label)
-    <label {{ $labelAttributes }}>
-        {{ $label }}
+@if($labelText)
+    <label {{ $labelHtmlAttributes }}>
+        {{ $labelText }}
     </label>
 @endif
 
